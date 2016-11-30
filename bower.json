@@ -1,12 +1,12 @@
 {
-  "name": "ion-tree-list",
-  "main": "ion-tree-list.js",
-  "version": "0.0.10",
-  "homepage": "https://github.com/ltung/ion-tree-list",
+  "name": "ion-dynamic-tree-list",
+  "main": "ion-dynamic-tree-list.js",
+  "version": "0.0.2",
+  "homepage": "https://github.com/ltung/ion-dynamic-tree-list",
   "authors": [
     "ltung <ltung@live.com>"
   ],
-  "description": "Ionic directive for displaying nested list items.",
+  "description": "Ionic directive for displaying nested list items and load the subtree only if the user choose to expand it.",
   "keywords": [
     "ionic",
     "ion",
@@ -19,7 +19,7 @@
     ".gitignore",
     "bower.json",
     "gulpfile.js",
-    "ion-tree-list.less",
+    "ion-dynamic-tree-list.less",
     "LICENSE",
     "package.json",
     "README.md",
