@@ -1,7 +1,7 @@
 {
   "name": "ion-dynamic-tree-list",
   "main": "ion-dynamic-tree-list.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/ltung/ion-dynamic-tree-list",
   "authors": [
     "ltung <ltung@live.com>"
