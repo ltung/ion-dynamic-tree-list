@@ -1,0 +1,30 @@
+<link type="text/css" rel="stylesheet" ng-href="{{baseUrl}}/ion-dynamic-tree-list.css"/>
+
+<script type="text/ng-template" id="item_default_renderer">
+
+
+    <span class="symbol">
+        <i class="icon" ng-if="item.noofchildren > 0"
+           ng-class="item.tree.length === 0? 'ion-arrow-right-b' : item.tree.collapsed ? 'ion-arrow-right-b' : 'ion-arrow-down-b'"
+           ng-click="toggleCollapse(item);"></i>
+        <i class="icon" ng-if="item.noofchildren <= 0"></i>
+    </span>
+    <div style="padding-left:30px">{{item.name}}</div>
+    <i class="icon ion-chevron-right" ng-click="emitChosenEvent(item);"></i>
+</script>
+
+<script type="text/ng-template" id="items_renderer">
+    <ion-item class="item item-icon-left item-icon-right depth-{{item.depth}}"
+              ng-include="templateUrl">
+    </ion-item>
+    <ion-list ng-model="item.tree"
+              ng-repeat="item in item.tree"
+              ng-hide="item.collapsed"
+              ng-include="'items_renderer'"
+              show-reorder="showReorder">
+    </ion-list>
+</script>
+
+<div class="list" ng-model="items">
+    <span ng-repeat="item in items" ng-include="'items_renderer'"></span>
+</div>

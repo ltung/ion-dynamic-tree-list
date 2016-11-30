@@ -1,71 +1,61 @@
-# ion-tree-list [![Stories in Ready](https://badge.waffle.io/fer/ion-tree-list.png?label=ready&title=Ready)](https://waffle.io/fer/ion-tree-list)  [![devDependency Status](https://david-dm.org/fer/ion-tree-list/dev-status.svg?style=flat)](https://david-dm.org/fer/ion-tree-list#info=devDependencies) [![Bower version](https://badge.fury.io/bo/ion-tree-list.svg)](http://badge.fury.io/bo/ion-tree-list) [![Build Status](https://drone.io/github.com/fer/ion-tree-list/status.png)](https://drone.io/github.com/fer/ion-tree-list/latest)
+# ion-dynamic-tree-list
 
-Ionic directive for displaying nested list ionic items.
-
-Check [demo](http://fer.github.io/ion-tree-list/) link.
+Ionic directive for displaying nested list ionic items. This project is modified from ```ion-tree-list```. While ```ion-tree-list``` is perfectly ok, it takes a while to load 1000+ nodes. I had an application that needed to handle this load and after a little research, the two way binding
+ of Angular JS was the culprit. I decided to re-write it and load the subtree while only when it is opened by the user.
+ It results a faster rendering time. I decided to rename it to ```ion-dynamic-tree-list``` since the usage is quite different and it worked for me and hopefully, someone else will find it useful. 
 
 ## Installation
 
 ```
-bower install ion-tree-list --save
+bower install ion-dynamic-tree-list --save
 ```
 
 Add somewhere in your HEAD tag:
 
 ```
-<script src="lib/ion-tree-list/ion-tree-list.js"></script>
+<script src="lib/ion-dynamic-tree-list/ion-dynamic-tree-list.js"></script>
 ```
 
-You'll need to add ```ion-tree-list``` as a dependency on your Ionic app:
+You'll need to add ```ion-dynamic-tree-list``` as a dependency on your Ionic app:
 
 ```
 angular.module('starter', [
     'ionic', 
     'controllers', 
     'services', 
-    'ion-tree-list'
+    'ion-dynamic-tree-list'
 ])
 ```
 
 In your ```controller.js```:
 
 ```
-  $scope.tasks = [
-    {
-      name: 'first task 1',
-      tree: [
-        {
-          name: 'first task 1.1'
-        }
-      ]
-    },
-    {
-      name: 'first task 2'
-    }
-  ];    
+  $scope.tasks = [{id: 1, parentid: 0, name: 'task 1'},
+    {id: 2, parentid: 1, name: 'task 1.1'},
+    {id: 3, parentid: 0, name: 'task 2'},
+    {id: 4, parentid: 0, name: 'task 3'}
+   ];
+
 ```
 
+Or, you could load your ```$scope.tasks``` from database.
 
 In your ```view.html```:
 
 ```
-<ion-tree-list items="tasks" collapsed="true"></ion-tree-list>
+<ion-dynamic-tree-list items="" source="tasks"></ion-dynamic-tree-list>
 ```
 
-Fetch clicked item by listening to ```$ionTreeList:ItemClicked``` in your controller:
+Fetch clicked item by listening to ```$ionDynamicTreeList:ItemChosen``` in your controller:
 
 ## Emmited events
 
 ```
-$scope.$on('$ionTreeList:ItemClicked', function(event, item) {
+$scope.$on('$ionDynamicTreeList:ItemChosen', function(event, item) {
   // process 'item'
   console.log(item);
 });
 
-$scope.$on('$ionTreeList:LoadComplete', function(event, items) {
-  // process 'items'
-  console.log(items);
-});
 ```
 
 ## Custom templates
@@ -73,22 +63,11 @@ $scope.$on('$ionTreeList:LoadComplete', function(event, items) {
 Imagine your tasks in ```$scope.tasks``` in your ```controller.js``` has an extra attribute as ```checked```:
 
 ```
-  $scope.tasks = [
-    {
-      name: 'first task 1',
-      checked: false,
-      tree: [
-        {
-          name: 'first task 1.1',
-          checked: true
-        },
-      ]
-    },
-    {
-      name: 'first task 2',
-      checked: true
-    }
-  ];
+  $scope.tasks = [{id: 1, parentid: 0, name: 'task 1', checked: false},
+      {id: 2, parentid: 1, name: 'task 1.1', checked: false},
+      {id: 3, parentid: 0, name: 'task 2', checked: true},
+      {id: 4, parentid: 0, name: 'task 3', checked: false}
+     ];
 ```
 
 In order to consume the ```checked``` value in your view, create a ```ion-item.tmpl.html``` file in 
@@ -102,13 +81,23 @@ your www folder containing the following:
 Add an extra ```template-url``` attribute for your custom template:
  
 ```
-<ion-tree-list items="tasks" template-url="'ion-item.tmpl.html'"></ion-tree-list>
+<ion-dynamic-tree-list items="" source="tasks" template-url="'ion-item.tmpl.html'"></ion-tree-list>
 ```
 
 ## Contributing
 
-Developers interested in contributing are very welcomed :)
+Please email me on my [email](mailto:ltung@live.com) if you needs a fix. Else,
 
-Don't hesitate to ping me on my [email](mailto:fer@ferqwerty.com) if you are missing a feature, a fix or you simply want to contribute.
+please report your issue in [here](https://github.com/ltung/ion-dynamic-tree-list/issues).
 
-There's an existent list of issues right [here](https://github.com/fer/ion-tree-list/issues).
+Code contribution is always welcomed.
+
+## Acknowledgment
+
+```ion-tree-list``` in  [here](https://github.com/fer/ion-tree-list)
+
+## To-dos
+
+1. Angular JS 2! Waiting for Ionic 2 to finalize.
+2. More complete Unit Test on Jasmine.
+

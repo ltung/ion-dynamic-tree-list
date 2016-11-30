@@ -1,6 +1,6 @@
 {
   "name": "ion-tree-list",
-  "version": "0.0.10",
+  "version": "0.0.1",
   "description": "Ionic directive for displaying nested list items.",
   "main": "ion-tree-list.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fer/ion-tree-list.git"
+    "url": "git+https://github.com/ltung/ion-tree-list.git"
   },
   "keywords": [
     "ionic",
@@ -17,15 +17,15 @@
     "tree",
     "list"
   ],
-  "author": "fer <fer@ferqwerty.com>",
+  "author": "ltung <ltung@live.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fer/ion-tree-list/issues"
+    "url": "https://github.com/ltung/ion-tree-list/issues"
   },
-  "homepage": "https://github.com/fer/ion-tree-list#readme",
+  "homepage": "https://github.com/ltung/ion-tree-list#readme",
   "devDependencies": {
     "gulp": "^3.9.0",
-    "gulp-david": "^1.0.0",
+    "gulp-david": "^1.0.1",
     "gulp-less": "^3.0.3",
     "gulp-load-plugins": "^1.0.0-rc.1",
     "gulp-minify-css": "^1.2.0",

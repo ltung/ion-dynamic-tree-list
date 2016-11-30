@@ -26,7 +26,7 @@ gulp.task('updateNpmDependencies', function(){
 });
 
 gulp.task('copy', function() {
-    return gulp.src(['ion-tree-list.js', 'ion-tree-list.css', 'ion-tree-list-tmpl.html'])
+    return gulp.src(['ion-dynamic-tree-list.js', 'ion-dynamic-tree-list.css', 'ion-tree-list-tmpl.html'])
         .pipe(gulp.dest('gh-pages/ion-tree-list/lib/ion-tree-list/'));
 });
 
