@@ -1,32 +1,135 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>ion-tree-list example</title>
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <script src="lib/ion-tree-list/ion-tree-list.js"></script>
-    <script src="lib/ionic-toast/dist/ionic-toast.bundle.min.js"></script>
-    <script src="app.js"></script>
-    <link rel="stylesheet" href="lib/ionic/css/ionic.min.css"/>
+    <meta charset="UTF-8">
+    <title>Ion-dynamic-tree-list by ltung</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-  <body ng-app="starter" ng-controller="DashCtrl">
-    <ion-header-bar class="bar-positive">
-      <h1 class="title">{{tasks.length}} chapters / {{totalNodes}} nodes</h1>
-      <a class="button" href="https://github.com/fer/ion-tree-list" target="_blank">
-        <i class="icon ion-social-octocat"></i>
-      </a>
-    </ion-header-bar>
-    <ion-content>
-      <ion-tree-list items="tasks" collapsed="collapse" template-url="{{customTemplate}}"></ion-tree-list>
-    </ion-content>
-    <ion-footer-bar align-title="left">
-      <div class="tabs">
-        <a class="tab-item" ng-click="collapse=!collapse">Collapse</a>
-        <a class="tab-item" ng-click="toggleTemplate()">Toggle Template</a>
-        <a class="tab-item" ng-click="generateSampleNodes(10)">Add 10 chapters</a>
-        <a class="tab-item" ng-click="tasks = []" ng-show="tasks.length > 5">Reset</a>
-      </div>
-    </ion-footer-bar>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Ion-dynamic-tree-list</h1>
+      <h2 class="project-tagline">Ionic directive for displaying nested list items.</h2>
+      <a href="https://github.com/ltung/ion-dynamic-tree-list" class="btn">View on GitHub</a>
+      <a href="https://github.com/ltung/ion-dynamic-tree-list/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/ltung/ion-dynamic-tree-list/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="ion-dynamic-tree-list" class="anchor" href="#ion-dynamic-tree-list" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ion-dynamic-tree-list</h1>
+
+<p>Ionic directive for displaying nested list ionic items. This project is modified from <code>ion-tree-list</code>. While <code>ion-tree-list</code> is perfectly ok, it takes a while to load 1000+ nodes. I had an application that needed to handle this load and after a little research, the two way binding
+ of Angular JS was the culprit. I decided to re-write it and load the subtree while only when it is opened by the user.
+ It results a faster rendering time. I decided to rename it to <code>ion-dynamic-tree-list</code> since the usage is quite different and it worked for me and hopefully, someone else will find it useful. </p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<pre><code>bower install ion-dynamic-tree-list --save
+</code></pre>
+
+<p>Add somewhere in your HEAD tag:</p>
+
+<pre><code>&lt;script src="lib/ion-dynamic-tree-list/ion-dynamic-tree-list.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>You'll need to add <code>ion-dynamic-tree-list</code> as a dependency on your Ionic app:</p>
+
+<pre><code>angular.module('starter', [
+    'ionic', 
+    'controllers', 
+    'services', 
+    'ion-dynamic-tree-list'
+])
+</code></pre>
+
+<p>In your <code>controller.js</code>:</p>
+
+<pre><code>  $scope.tasks = [{id: 1, parentid: 0, name: 'task 1'},
+    {id: 2, parentid: 1, name: 'task 1.1'},
+    {id: 3, parentid: 0, name: 'task 2'},
+    {id: 4, parentid: 0, name: 'task 3'}
+   ];
+
+</code></pre>
+
+<p>Or, you could load your <code>$scope.tasks</code> from database.</p>
+
+<p>In your <code>view.html</code>:</p>
+
+<pre><code>&lt;ion-dynamic-tree-list items="" source="tasks"&gt;&lt;/ion-dynamic-tree-list&gt;
+</code></pre>
+
+<p>Fetch clicked item by listening to <code>$ionDynamicTreeList:ItemChosen</code> in your controller:</p>
+
+<h2>
+<a id="emmited-events" class="anchor" href="#emmited-events" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Emmited events</h2>
+
+<pre><code>$scope.$on('$ionDynamicTreeList:ItemChosen', function(event, item) {
+  // process 'item'
+  console.log(item);
+});
+
+</code></pre>
+
+<h2>
+<a id="custom-templates" class="anchor" href="#custom-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Custom templates</h2>
+
+<p>Imagine your tasks in <code>$scope.tasks</code> in your <code>controller.js</code> has an extra attribute as <code>checked</code>:</p>
+
+<pre><code>  $scope.tasks = [{id: 1, parentid: 0, name: 'task 1', checked: false},
+      {id: 2, parentid: 1, name: 'task 1.1', checked: false},
+      {id: 3, parentid: 0, name: 'task 2', checked: true},
+      {id: 4, parentid: 0, name: 'task 3', checked: false}
+     ];
+</code></pre>
+
+<p>In order to consume the <code>checked</code> value in your view, create a <code>ion-item.tmpl.html</code> file in 
+your www folder containing the following:</p>
+
+<pre><code>&lt;input type="checkbox" ng-model="item.checked"/&gt;
+{{item.name}}
+</code></pre>
+
+<p>Add an extra <code>template-url</code> attribute for your custom template:</p>
+
+<pre><code>&lt;ion-dynamic-tree-list items="" source="tasks" template-url="'ion-item.tmpl.html'"&gt;&lt;/ion-tree-list&gt;
+</code></pre>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>Please email me on my <a href="mailto:ltung@live.com">email</a> if you needs a fix. Else,</p>
+
+<p>please report your issue in <a href="https://github.com/ltung/ion-dynamic-tree-list/issues">here</a>.</p>
+
+<p>Code contribution is always welcomed.</p>
+
+<h2>
+<a id="acknowledgment" class="anchor" href="#acknowledgment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Acknowledgment</h2>
+
+<p><code>ion-tree-list</code> in  <a href="https://github.com/fer/ion-tree-list">here</a></p>
+
+<h2>
+<a id="to-dos" class="anchor" href="#to-dos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>To-dos</h2>
+
+<ol>
+<li>Angular JS 2! Waiting for Ionic 2 to finalize.</li>
+<li>More complete Unit Test on Jasmine.</li>
+</ol>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/ltung/ion-dynamic-tree-list">Ion-dynamic-tree-list</a> is maintained by <a href="https://github.com/ltung">ltung</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
   </body>
 </html>
