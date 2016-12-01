@@ -117,3 +117,4 @@ Forked from ```ion-tree-list``` in  [here](https://github.com/fer/ion-tree-list)
 * Angular JS 2! Waiting for Ionic 2 to finalize.
 * More complete Unit Test in Jasmine.
 * Combine "items" and "source" into one?
+* Add additional emit event when a tree is being collapse/expand for easier change by a developer?

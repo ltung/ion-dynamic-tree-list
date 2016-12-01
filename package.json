@@ -18,7 +18,12 @@
     "list"
   ],
   "author": "ltung <ltung@live.com>",
-  "contributors": [ {"name": "fer", "email": "fer@ferqwerty.com"} ],
+  "contributors": [
+    {
+      "name": "fer",
+      "email": "fer@ferqwerty.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ltung/ion-dynamic-tree-list/issues"
