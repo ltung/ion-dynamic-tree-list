@@ -1,15 +1,15 @@
 {
-  "name": "ion-tree-list",
+  "name": "ion-dynamic-tree-list",
   "version": "0.0.5",
   "description": "Ionic directive for displaying nested list items.",
-  "main": "ion-tree-list.js",
+  "main": "ion-dynamic-tree-list.js",
   "scripts": {
     "start": "gulp watch",
     "test": "gulp test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ltung/ion-tree-list.git"
+    "url": "git+https://github.com/ltung/ion-dynamic-tree-list.git"
   },
   "keywords": [
     "ionic",
@@ -18,11 +18,12 @@
     "list"
   ],
   "author": "ltung <ltung@live.com>",
+  "contributors": [ {"name": "fer", "email": "fer@ferqwerty.com"} ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ltung/ion-tree-list/issues"
+    "url": "https://github.com/ltung/ion-dynamic-tree-list/issues"
   },
-  "homepage": "https://github.com/ltung/ion-tree-list#readme",
+  "homepage": "https://github.com/ltung/ion-dynamic-tree-list#readme",
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-david": "^1.0.1",

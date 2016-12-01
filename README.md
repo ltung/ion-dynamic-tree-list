@@ -1,7 +1,7 @@
 # ion-dynamic-tree-list
 
 Ionic directive for displaying nested list ionic items. This project is modified from ```ion-tree-list```. While ```ion-tree-list``` is perfectly ok, it takes a while to load 1000+ nodes. I had an application that needed to handle this load and after a little research, the two way binding
- of Angular JS was the culprit. I decided to re-write it and load the subtree while only when it is opened by the user.
+ of Angular JS was the culprit. I decided to re-write it and load the subtree only when it is opened by the user.
  It results a faster rendering time. I decided to rename it to ```ion-dynamic-tree-list``` since the usage is quite different and it worked for me and hopefully, someone else will find it useful. 
 
 ## Installation
@@ -38,7 +38,25 @@ In your ```controller.js```:
 
 ```
 
-Or, you could load your ```$scope.tasks``` from database.
+Or, you could load your ```$scope.tasks``` from database, e.g.:
+
+Assuming your table structure is:
+
+| Column        | Type          |
+| ------------- |:-------------:|
+| id            | int           | 
+| parentid      | int           | 
+| name          | varchar(40)   | 
+
+Note that the display order of an element follows the position of it in the array. So, you need to use "order by" in
+your database statement to control the display order of the tree.
+
+```
+    $http.get('http://yourwebsite/GetTasks').
+       then(function (response) {
+           $scope.tasks = response.data;
+        });
+```
 
 In your ```view.html```:
 
@@ -81,23 +99,21 @@ your www folder containing the following:
 Add an extra ```template-url``` attribute for your custom template:
  
 ```
-<ion-dynamic-tree-list items="" source="tasks" template-url="'ion-item.tmpl.html'"></ion-tree-list>
+<ion-dynamic-tree-list items="" source="tasks" template-url="'ion-item.tmpl.html'"></ion-dynamic-tree-list>
 ```
 
 ## Contributing
 
-Please email me on my [email](mailto:ltung@live.com) if you needs a fix. Else,
-
-please report your issue in [here](https://github.com/ltung/ion-dynamic-tree-list/issues).
+Please email me on my [email](mailto:ltung@live.com) if you needs a fix. Else, please report your issue in [here](https://github.com/ltung/ion-dynamic-tree-list/issues).
 
 Code contribution is always welcomed.
 
 ## Acknowledgment
 
-```ion-tree-list``` in  [here](https://github.com/fer/ion-tree-list)
+Forked from ```ion-tree-list``` in  [here](https://github.com/fer/ion-tree-list)
 
 ## To-dos
 
-1. Angular JS 2! Waiting for Ionic 2 to finalize.
-2. More complete Unit Test on Jasmine.
-
+* Angular JS 2! Waiting for Ionic 2 to finalize.
+* More complete Unit Test in Jasmine.
+* Combine "items" and "source" into one?
