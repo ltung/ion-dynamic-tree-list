@@ -1,4 +1,5 @@
 # ion-dynamic-tree-list
+[![Code Climate](https://codeclimate.com/github/ltung/ion-dynamic-tree-list/badges/gpa.svg)](https://codeclimate.com/github/ltung/ion-dynamic-tree-list)
 
 Ionic directive for displaying nested list ionic items. This project is modified from ```ion-tree-list```. While ```ion-tree-list``` is perfectly ok, it takes a while to load 1000+ nodes. I had an application that needed to handle this load and after a little research, the two way binding
  of Angular JS was the culprit. I decided to re-write it and load the subtree only when it is opened by the user.
