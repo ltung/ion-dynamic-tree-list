@@ -8,7 +8,7 @@ var CONF = {
 
 function toggleCollapse(obj) {
     for (var key in obj) {
-        if (obj[key] && typeof (obj[key]) == 'object') {
+        if (obj[key] && typeof (obj[key]) === 'object') {
             obj[key].collapsed = !obj[key].collapsed;
             toggleCollapse(obj[key]);
         }
@@ -34,10 +34,10 @@ function buildRoot(options) {
         temp[e[id]] = e;
     }
 
-    // 2nd pass: find no. of children. Reason: no assumption that that root parent is defined before the child in the array
+    // 2nd pass: find no. of children. Reason: no assumption that root's parent is defined before the child in the array
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         e = _ref[_i];
-        if (temp[e[pid]] != null) {
+        if (temp[e[pid]] !== undefined) {
             temp[e[pid]][noofchildren]++;
         } else {
             // root level
@@ -76,7 +76,7 @@ angular.module('ion-dynamic-tree-list', [], ['$rootScopeProvider', function ($ro
                         // The javascript native filter & foreach array is slow. Using for loop here
                         for (var i = 0, len = $scope.source.length; i < len; i++) {
                             var curItem = $scope.source[i];
-                            if (curItem.parentid == item.id) {
+                            if (curItem.parentid === item.id) {
                                 curItem.depth = item.depth + 1;
                                 curItem.collapse = true;
                                 item.tree.push(curItem);

@@ -3,11 +3,12 @@
 var gulp = require('gulp'),
     release = require('gulp-release-tasks')(gulp),
     $ = require('gulp-load-plugins')(),
-    Server = require('karma').Server;
+    Server = require('karma').Server,
+    path = require('path');
 
 gulp.task('test', function (done) {
     new Server({
-        configFile: __dirname + '/tests/karma.conf.js',
+        configFile: path.join(__dirname, 'tests/karma.conf.js'),
         singleRun: true
     }, done).start()
 });
