@@ -30,11 +30,11 @@
   },
   "homepage": "https://github.com/ltung/ion-dynamic-tree-list#readme",
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-david": "^1.0.1",
-    "gulp-less": "^3.0.3",
-    "gulp-load-plugins": "^1.0.0-rc.1",
-    "gulp-minify-css": "^1.2.0",
+    "gulp": "^3.9.1",
+    "@cedx/gulp-david": "^3.0.2",
+    "gulp-less": "^3.3.0",
+    "gulp-load-plugins": "^1.4.0",
+    "gulp-clean-css": "^2.2.1",
     "gulp-release-tasks": "0.0.3",
     "jasmine-core": "^2.3.4",
     "karma": "^1.3.0",
@@ -45,6 +45,6 @@
     "phantomjs-prebuilt": "^2.1.7"
   },
   "dependencies": {
-    "bower": "^1.7.7"
+    "bower": "^1.8.0"
   }
 }
