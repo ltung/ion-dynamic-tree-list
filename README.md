@@ -105,7 +105,7 @@ Add an extra ```template-url``` attribute for your custom template:
 
 ## Contributing
 
-Please email me on my [email](mailto:ltung@live.com) if you needs a fix. Else, please report your issue in [here](https://github.com/ltung/ion-dynamic-tree-list/issues).
+If you need a fix, please report your issue in [here](https://github.com/ltung/ion-dynamic-tree-list/issues).
 
 Code contribution is always welcomed.
 
