@@ -31,10 +31,11 @@
   "homepage": "https://github.com/ltung/ion-dynamic-tree-list#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "@cedx/gulp-david": "^6.1.0",
+    "@cedx/gulp-david": "^4.1.0",
     "gulp-less": "^3.3.0",
     "gulp-load-plugins": "^1.5.0",
-    "gulp-clean-css": "^3.0.3",
+    "gulp-clean-css": "^3.0.4",
+    "gulp-rename": "^1.2.2",
     "gulp-release-tasks": "0.0.3",
     "jasmine-core": "^2.5.2",
     "karma": "^1.5.0",

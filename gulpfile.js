@@ -16,13 +16,14 @@ gulp.task('test', function (done) {
 gulp.task('less', function () {
     return gulp.src('./*.less')
         .pipe($.less())
-        .pipe($.minifyCss())
+        .pipe($.cleanCss())
+        .pipe($.rename({suffix: '.min'}))
         .pipe(gulp.dest('.'));
 });
 
 gulp.task('updateNpmDependencies', function(){
     return gulp.src('package.json')
-        .pipe($.david({ update: true }))
+        .pipe($.cedx.david.david({update: true}))
         .pipe(gulp.dest('.'))
 });
 
